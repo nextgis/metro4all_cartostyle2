@@ -40,8 +40,8 @@ Map {
 /* LANDUSE & LANDCOVER COLORS
 /* ================================================================== */
 
-@land:              #FCFBE7;
-@water:             #C4DFF6;
+@land:              #F6F4DF;
+@water:             #B6C2FF;
 @grass:             #E6F2C1;
 @beach:             #FFEEC7;
 @park:              #DAF2C1;
@@ -49,14 +49,14 @@ Map {
 @wooded:            #C3D9AD;
 @agriculture:       #F2E8B6;
 
-@building:          #E4E0E0;
-@hospital:          rgb(229,198,195);
-@school:            #FFF5CC;
-@sports:            #B8E6B8;
+@building:          #E6D6CB;
+@hospital:          #F4DFE1;
+@school:            #E5E0F4;
+@sports:            #BEE3D7;
 
 @residential:       @land * 0.98;
 @commercial:        @land * 0.97;
-@industrial:        @land * 0.96;
+@industrial:        #E6E6E6;
 @parking:           #EEE;
 
 /* ================================================================== */
@@ -72,29 +72,29 @@ Map {
  *         inner fill (inline).
  */
 
-@motorway_line:     #E65C5C;
+@motorway_line:     #FC5151;
 @motorway_fill:     lighten(@motorway_line,10%);
 @motorway_case:     @motorway_line * 0.9;
 
-@trunk_line:        #E68A5C;
+@trunk_line:        #FC5151;
 @trunk_fill:        lighten(@trunk_line,10%);
 @trunk_case:        @trunk_line * 0.9;
 
-@primary_line:      #FFC859;
+@primary_line:      #FDAC6B;
 @primary_fill:      lighten(@primary_line,10%);
 @primary_case:      @primary_line * 0.9;
 
-@secondary_line:    #FFE873;
-@secondary_fill:    lighten(@secondary_line,10%);
+@secondary_line:    #FCEF58;
+@secondary_fill:    lighten(@secondary_line,15%);
 @secondary_case:    @secondary_line * 0.9;
 
-@standard_line:     @land * 0.85;
+@standard_line:     #E6E6E6;
 @standard_fill:     #fff;
-@standard_case:     @land * 0.9;
+@standard_case:     @standard_line * 0.91;
 
 @pedestrian_line:   @standard_line;
 @pedestrian_fill:   #FAFAF5;
-@pedestrian_case:   @land;
+@pedestrian_case:   @standard_line;
 
 @cycle_line:        @standard_line;
 @cycle_fill:        #FAFAF5;
