@@ -170,18 +170,20 @@
   marker-width: 16;
   marker-ignore-placement: false;
   marker-file: url('img/maki/src/rail-12i.svg');
-  text-name: "[name]";
-  text-face-name: @sans;
-  text-fill: @depot_text;
-  text-halo-fill: @depot_halo;
-  text-size: 10;
-  text-dx: 10;
-  text-dy: 10;
-  text-placement-type: simple;
-  text-placements: "S,N,E,W,NE,NW,SW,SE";
-  text-halo-radius: 1.5;
-  text-wrap-width: 30;
-  //text-min-padding: 1;
+  [zoom>=13] {
+    text-name: "[name]";
+    text-face-name: @sans;
+    text-fill: @depot_text;
+    text-halo-fill: @depot_halo;
+    text-size: 10;
+    text-dx: 10;
+    text-dy: 10;
+    text-placement-type: simple;
+    text-placements: "S,N,E,W,NE,NW,SW,SE";
+    text-halo-radius: 1.5;
+    text-wrap-width: 30;
+    //text-min-padding: 1;
+  }
 }
 
 #railway_stations[zoom>=13] {
