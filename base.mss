@@ -161,3 +161,14 @@
 /* ================================================================== */
 /* BARRIER LINES
 /* ================================================================== */
+#barrier_lines[zoom>=16][stylegroup = 'fence'],
+#barrier_lines[zoom>=16][stylegroup = 'wall']{
+  line-width:1;
+  line-color:#aab;
+  line-dasharray:9,2;
+}
+
+#barrier_lines[zoom>=16][stylegroup = 'hedge'] {
+  line-width:3;
+  line-color:darken(@park,5%);
+}
