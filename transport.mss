@@ -213,7 +213,7 @@
   [railway="tram_stop"][zoom>=15] {
     //marker-file: url(img/icon/halt.svg);
     //marker-transform: rotate([angle], 0, 0);
-    marker-file: url('img/maki/src/rail-light-12.svg');
+    marker-file: url('img/maki/src/rail-light-18i.svg');
     marker-width: 12;
     marker-ignore-placement: true;
     [zoom>=18] {
