@@ -210,7 +210,7 @@
       text-halo-radius: 1.5;
     }
   }
-  [railway="tram_stop"][zoom>=15] {
+  [railway="tram_stop"][zoom>=16] {
     //marker-file: url(img/icon/halt.svg);
     //marker-transform: rotate([angle], 0, 0);
     marker-file: url('img/maki/src/rail-light-18i.svg');
