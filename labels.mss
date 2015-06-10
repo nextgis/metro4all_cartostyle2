@@ -114,23 +114,17 @@
 }
 
 #shop_label[type='mall'][zoom>=15] {
-    text-fill: #A08F3B;
-    text-halo-fill: @other_halo;
-    text-face-name:@sans;
-    text-name: "[name]";
-    text-halo-radius: 1.5;
-    text-size: 11;
-    text-wrap-width: 30;
   [zoom>=15][area>80000],
   [zoom>=16][area>20000],
-  [zoom>=17][area>5000] {
+  [zoom>=17][area>5000],
+  [zoom>=18][area>0] {
     text-fill: #A08F3B;
     text-halo-fill: @other_halo;
     text-face-name:@sans;
     text-name: "[name]";
-    text-size: 13;
+    text-size: 11;
     text-halo-radius:1;
-    text-wrap-width:30;
+    text-wrap-width:40;
   }
   [zoom=15][area>1600000],
   [zoom=16][area>80000],
@@ -148,7 +142,7 @@
     text-name: "[name]";
     text-size: 17;
     text-character-spacing: 2;
-    text-wrap-width: 120;
+    text-wrap-width: 100;
     text-halo-radius: 1.5;
   }
 }
