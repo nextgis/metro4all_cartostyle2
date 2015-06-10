@@ -147,6 +147,41 @@
   }
 }
 
+#cafe_label[zoom>=17] {
+  marker-allow-overlap: false;
+  marker-width: 16;
+  marker-ignore-placement: false;
+  [type='bar'] {
+    marker-file: url('img/maki/src/bar-18g.svg');
+  }
+  [type='cafe'] {
+    marker-file: url('img/maki/src/cafe-18g.svg');
+  }
+  [type='fast_food'] {
+    marker-file: url('img/maki/src/fast-food-18g.svg');
+  }
+  [type='pub'] {
+    marker-file: url('img/maki/src/beer-18g.svg');
+  }
+  [type='restaurant'] {
+    marker-file: url('img/maki/src/restaurant-18g.svg');
+  }
+  [zoom>=18] {
+    marker-width: 18;
+    text-name: "[name]";
+    text-face-name: @sans;
+    text-fill: @poi_text;
+    text-halo-fill: @poi_halo;
+    text-size: 9;
+    text-dx: 9;
+    text-dy: 12;
+    text-placement-type: simple;
+    text-placements: "S";
+    text-halo-radius: 1.5;
+    text-wrap-width: 30;
+  }
+}
+
 /* ---- Other small places ------------------------------------------ */
 
 #place::small[type='village'][zoom>=13],
