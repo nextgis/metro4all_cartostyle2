@@ -154,7 +154,8 @@ Map {
 @tram_text:         #777;
 @tram_halo:         @white_halo;
 
-@poi_text:          #888;
+@poi_text:          #777;
+@poi_halo:          #777;
 
 @other_text:        #888;
 @other_halo:        @white_halo;
