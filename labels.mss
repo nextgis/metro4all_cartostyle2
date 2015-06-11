@@ -118,7 +118,7 @@
   [zoom>=16][area>20000],
   [zoom>=17][area>5000],
   [zoom>=18][area>0] {
-    text-fill: #A08F3B;
+    text-fill: #736b65;
     text-halo-fill: @other_halo;
     text-face-name:@sans;
     text-name: "[name]";
