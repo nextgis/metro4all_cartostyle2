@@ -408,7 +408,7 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, access, 'fill' AS render\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL)\n    AND highway IN ('footway', 'steps')\n    AND (z_order < 0)\n  ORDER BY z_order\n) AS data",
+        "table": "( SELECT group_id, ST_Union(way) AS way FROM\n  ( SELECT a.group_id, ST_Intersection(a.way, b.way) AS way\n    FROM planet_osm_line_underways AS a, planet_osm_line_underways AS b\n    WHERE ST_Intersects(a.way, b.way) /*AND way && !bbox!*/\n    UNION\n    SELECT a.group_id, ST_Difference(a.way, b.way) AS way\n    FROM planet_osm_line_underways AS a, planet_osm_line_underways AS b\n    WHERE ST_Intersects(a.way, b.way) /*AND way && !bbox!*/\n  ) AS underways\n  GROUP BY group_id\n) AS data",
         "extent_cache": "auto",
         "extent": "4096557.33,7385775.29,4278007.86,7598333.15"
       },
