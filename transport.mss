@@ -67,50 +67,6 @@
     text-halo-radius: 2;
     marker-width: 18;
   }
-  [zoom>=16][station=null] {
-    marker-allow-overlap: false;
-    marker-width: 12;
-    [metro_icon='entrance-metro'] {
-      marker-file: url('img/icon/metro/src/entrance-18.svg');
-    }
-    [metro_icon='msk-metro'] {
-      marker-file: url('img/icon/metro/src/msk-metro-18.svg');
-    }
-    [metro_icon='spb-metro'] {
-      marker-file: url('img/icon/metro/src/spb-metro-18.svg');
-    }
-    [metro_icon='niz-metro'] {
-      marker-file: url('img/icon/metro/src/niz-metro-18.svg');
-      marker-width: 12;
-    }
-    [metro_icon='kzn-metro'] {
-      marker-file: url('img/icon/metro/src/kzn-metro-18.svg');
-    }
-    [metro_icon='sam-metro'] {
-      marker-file: url('img/icon/metro/src/sam-metro-18.svg');
-    }
-    [metro_icon='ekb-metro'] {
-      marker-file: url('img/icon/metro/src/ekb-metro-18.svg');
-    }
-    [metro_icon='nsk-metro'] {
-      marker-file: url('img/icon/metro/src/nsk-metro-18.svg');
-    }
-    [metro_icon='min-metro'] {
-      marker-file: url('img/icon/metro/src/min-metro-18.svg');
-    }
-    [metro_icon='waw-metro'] {
-      marker-file: url('img/icon/metro/src/waw-metro-18.svg');
-    }
-    [metro_icon='ams-metro'] {
-      marker-file: url('img/icon/metro/src/ams-metro-18.svg');
-    }
-    [metro_icon='gla-metro'] {
-      marker-file: url('img/icon/metro/src/gla-metro-18.svg');
-    }
-    [metro_icon='lau-metro'] {
-      marker-file: url('img/icon/metro/src/lau-metro-18.svg');
-    }
-  }
 }
 
 /* ---- Subway platforms --------------------------------------------------- */
