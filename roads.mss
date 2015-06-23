@@ -39,7 +39,7 @@ come in as well.
 /* ---- Casing ----------------------------------------------- */
 
 #roads_high::outline[zoom>=11][zoom<=20],
-#tunnel[render='1_outline'][zoom>=11][zoom<=20],
+#tunnel[type!='subway'][render='1_outline'][zoom>=11][zoom<=20],
 #bridge[render='1_outline'][zoom>=11][zoom<=20]{
   /* -- colors & styles -- */
   line-cap: round;
@@ -260,7 +260,7 @@ come in as well.
 }
 
 /* ---- Bridge fill for dashed lines -------------------------------- */
-#tunnel[render='2_line'][zoom>=14][zoom<=20],
+#tunnel[type!='subway'][render='2_line'][zoom>=14][zoom<=20],
 #bridge[render='2_line'][zoom>=14][zoom<=20]{
   /* -- colors & styles -- */
   [stylegroup='noauto'] {
