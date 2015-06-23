@@ -829,15 +829,24 @@
         "key_field": "",
         "project": "metro4all_cartostyle2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, name, amenity AS type\n FROM planet_osm_point\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant')\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, amenity AS type\n FROM planet_osm_polygon\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant')\n) AS data"
+        "table": "( SELECT way, name, amenity AS type\n FROM planet_osm_point\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre') AND name IS NOT NULL\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, amenity AS type\n FROM planet_osm_polygon\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre') AND name IS NOT NULL\n UNION\n SELECT way, name, tourism AS type\n FROM planet_osm_point\n WHERE tourism IN ('gallery', 'museum', 'zoo') AND name IS NOT NULL\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, tourism AS type\n FROM planet_osm_polygon\n WHERE tourism IN ('gallery', 'museum', 'zoo') AND name IS NOT NULL\n) AS data",
+        "extent_cache": "auto",
+        "extent": "4127951.77,7441029.19,4235267.59,7575140.36"
       },
       "class": "",
       "geometry": "point",
-      "id": "cafe_label",
-      "name": "cafe_label",
+      "id": "poi_label",
+      "name": "poi_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "extent": [
+        37.08202167099231,
+        55.40581981436597,
+        38.04605608433051,
+        56.083922179246834
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {

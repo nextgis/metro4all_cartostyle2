@@ -147,10 +147,11 @@
   }
 }
 
-#cafe_label[zoom>=17] {
+#poi_label[zoom>=17] {
   marker-allow-overlap: false;
   marker-width: 16;
   marker-ignore-placement: false;
+  //Sustenance
   [type='bar'] {
     marker-file: url('img/maki/src/bar-18g.svg');
   }
@@ -166,6 +167,23 @@
   [type='restaurant'] {
     marker-file: url('img/maki/src/restaurant-18g.svg');
   }
+  //Arts and Culture
+  [type='cinema'] {
+    marker-file: url('img/maki/src/cinema-18g.svg');
+  }
+  [type='theatre'] {
+    marker-file: url('img/maki/src/theatre-18g.svg');
+  }
+  [type='gallery'] {
+    marker-file: url('img/maki/src/art-gallery-18g.svg');
+  }
+  [type='museum'] {
+    marker-file: url('img/maki/src/museum-18g.svg');
+  }
+  [type='zoo'] {
+    marker-width: 24;
+    marker-file: url('img/maki/src/zoo-24g.svg');
+  }
   [zoom>=18] {
     marker-width: 18;
     text-name: "[name]";
@@ -179,6 +197,9 @@
     text-placements: "S";
     text-halo-radius: 1.5;
     text-wrap-width: 30;
+    [type='zoo'] {
+      marker-width: 24;
+    }
   }
 }
 
