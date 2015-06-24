@@ -101,7 +101,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n) AS data"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
+        "extent_cache": "auto",
+        "extent": "4111215.35,7315587.31,4301233.15,7595844.15"
       },
       "class": "",
       "geometry": "linestring",
@@ -109,7 +111,14 @@
       "name": "waterway_low",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "extent": [
+        36.93167585211788,
+        54.7608379683503,
+        38.638634792065545,
+        56.18755818560114
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -121,14 +130,23 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n) AS data"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
+        "extent_cache": "auto",
+        "extent": "4111215.35,7315587.31,4301233.15,7595844.15"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_med",
       "name": "waterway_med",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        36.93167585211788,
+        54.7608379683503,
+        38.638634792065545,
+        56.18755818560114
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -140,14 +158,23 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n) AS data"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
+        "extent_cache": "auto",
+        "extent": "4111215.35,7315587.31,4301233.15,7595844.15"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_high",
       "name": "waterway_high",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "extent": [
+        36.93167585211788,
+        54.7608379683503,
+        38.638634792065545,
+        56.18755818560114
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
@@ -721,7 +748,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream') \n    AND name IS NOT NULL\n) AS data"
+        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND name IS NOT NULL\n) AS data",
+        "extent_cache": "auto",
+        "extent": "4111215.35,7315587.31,4301233.15,7595844.15"
       },
       "class": "",
       "geometry": "linestring",
@@ -729,7 +758,14 @@
       "name": "waterway_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "extent": [
+        36.93167585211788,
+        54.7608379683503,
+        38.638634792065545,
+        56.18755818560114
+      ],
+      "advanced": {}
     },
     {
       "Datasource": {
