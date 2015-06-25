@@ -12,7 +12,7 @@
 
 /* ---- Cities ------------------------------------------------------ */
 
-#place::city[type='city'][zoom>=10][zoom<=15] {
+#place::city[type='city'][zoom>=10][zoom<=12] {
   text-name:'[name]';
   text-face-name:@sans;
   text-placement:point;
