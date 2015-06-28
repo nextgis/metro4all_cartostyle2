@@ -88,7 +88,7 @@ Map {
 @secondary_fill:    lighten(@secondary_line,15%);
 @secondary_case:    @secondary_line * 0.9;
 
-@standard_line:     #E6E6E6;
+@standard_line:     #DADAD3;
 @standard_fill:     #fff;
 @standard_case:     @standard_line * 0.91;
 
