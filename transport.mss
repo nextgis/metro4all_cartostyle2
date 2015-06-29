@@ -80,7 +80,7 @@
 //@rdz variables from osm-bright roads block
 #pathways_underground[zoom>=17][zoom<=20] {
   line-cap: square;
-  line-join: miter;
+  line-join: round;
   line-color: #444;
   line-comp-op: minus;
   /*[zoom=15] {
