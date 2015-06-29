@@ -39,6 +39,7 @@ come in as well.
 /* ---- Casing ----------------------------------------------- */
 
 #roads_high::outline[zoom>=11][zoom<=20],
+#tram_lines::outline[zoom>=11][zoom<=20],
 #tunnel[type!='subway'][render='1_outline'][zoom>=11][zoom<=20],
 #bridge[render='1_outline'][zoom>=11][zoom<=20]{
   /* -- colors & styles -- */
@@ -148,6 +149,7 @@ come in as well.
 
 /* Subway tunnels removed */
 #roads_high[zoom>=11][zoom<=20],
+#tram_lines[zoom>=11][zoom<=20],
 #tunnel[type!='subway'][render='3_inline'][zoom>=11][zoom<=20],
 #bridge[render='3_inline'][zoom>=11][zoom<=20]{
   /* -- colors & styles -- */
@@ -175,7 +177,7 @@ come in as well.
   [stylegroup='railway'] {
     line-color: @rail_line;
     line-dasharray: 1,1;
-    [type='subway'] { line-opacity: 0.67; }
+    [type='tram'] { line-color: @tram_line; }
     [zoom>15] { line-dasharray: 1,2; } 
   }
   [stylegroup='noauto'],
