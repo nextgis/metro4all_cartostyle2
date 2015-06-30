@@ -281,7 +281,7 @@
 // =====================================================================
 
 //#area_label[admin_level=''],
-#area_label[admin_level=null][type!=null]{
+#area_label[type!=null]{
   // Bring in labels gradually as one zooms in, bases on polygon area
   [zoom>=10][area>102400000],
   [zoom>=11][area>25600000],
@@ -305,7 +305,8 @@
       text-fill: @park * 0.6;
       text-halo-fill: lighten(@park, 10);
     }
-    [type='golf_course'][zoom>=10] {
+    [type='stadium'][zoom>=10] {
+      text-face-name: @sans_lt_italic;
       text-fill: @sports * 0.6;
       text-halo-fill: lighten(@sports, 10);
     }
@@ -318,12 +319,14 @@
       text-halo-fill: lighten(@hospital, 10);
     }
     [type='college'][zoom>=10],
+    [type='kindergarten'][zoom>=10]
     [type='school'][zoom>=10],
     [type='university'][zoom>=10] {
       text-fill: @school * 0.6;
       text-halo-fill: lighten(@school, 10);
     }
-    [type='water'][zoom>=10] {
+    [type='water'][zoom>=10],
+    [type='wetland'][zoom>=10]{
       text-fill: @water * 0.6;
       text-halo-fill: lighten(@water, 10);
     }
