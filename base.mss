@@ -15,6 +15,11 @@
   polygon-gamma: 0.75;
 }
 
+#water-high[zoom>=10] {
+  polygon-fill: @water;
+  polygon-gamma: 0.75;
+}
+
 #landuse_gen1[zoom>=10][zoom<=12],
 #landuse[zoom>12] {
   [type='cemetery']      { polygon-fill: @cemetery; }
