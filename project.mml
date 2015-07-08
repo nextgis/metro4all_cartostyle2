@@ -6,8 +6,8 @@
     71.44
   ],
   "center": [
-    30.31,
-    59.93,
+    30.52,
+    50.45,
     11
   ],
   "format": "png",
@@ -583,7 +583,7 @@
         "port": "5432",
         "user": "myway",
         "password": "LTFZcIOe4qdM",
-        "table": "(SELECT way, station, name, UPPER(network) AS network,\n (CASE UPPER(network) WHEN 'МОСКОВСКИЙ МЕТРОПОЛИТЕН' THEN 'msk-metro'\n                      WHEN 'ПЕТЕРБУРГСКИЙ МЕТРОПОЛИТЕН' THEN 'spb-metro'\n                      WHEN 'НИЖЕГОРОДСКИЙ МЕТРОПОЛИТЕН' THEN 'niz-metro'\n                      WHEN 'КАЗАНСКИЙ МЕТРОПОЛИТЕН' THEN 'kzn-metro'\n                      WHEN 'САМАРСКИЙ МЕТРОПОЛИТЕН' THEN 'sam-metro'\n                      WHEN 'ЕМУП «ЕКАТЕРИНБУРГСКИЙ МЕТРОПОЛИТЕН»' THEN 'ekb-metro'\n                      WHEN 'НОВОСИБИРСКИЙ МЕТРОПОЛИТЕН' THEN 'nsk-metro'\n                      WHEN 'МИНСКИЙ МЕТРОПОЛИТЕН' THEN 'min-metro'\n                      WHEN 'WARSAW METRO' THEN 'waw-metro'\n                      WHEN 'AMSTERDAM METRO' THEN 'ams-metro'\n                      WHEN 'GLASGOW SUBWAY' THEN 'gla-metro'\n                      WHEN 'TL' THEN 'lau-metro'\n                      /*\n                      WHEN 'КП \"КИЇВСЬКИЙ МЕТРОПОЛІТЕН\"' THEN 'kyiv-metro'\n                      WHEN 'КП «ХАРКІВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kharkov-metro'\n                      WHEN '\"КП \"ДНЕПРОПЕТРОВСКИЙ МЕТРОПОЛИТЕН\"\"' THEN 'dnepr-metro'\n                      WHEN \"ATAC\" THEN 'roma-metro'\n                      WHEN \"BAKI METROPOLITENI\" THEN 'baki-metro'\n                      WHEN \"TBILISI METRO\" THEN 'tbilisi-metro'\n                      WHEN \"АЛМАТИНСКИЙ МЕТРОПОЛИТЕН\" THEN 'alm-metro'\n                      WHEN \"ТАШКЕНТСКИЙ МЕТРОПОЛИТЕН\" THEN 'uzb-metro'\n                      */\n                      ELSE 'entrance-metro'\n  END) AS metro_icon     \nFROM planet_osm_point\nWHERE railway='subway_entrance'\n  OR station='subway'\n) AS data",
+        "table": "(SELECT way, station, name, COALESCE(UPPER(network), UPPER(operator)) AS network,\n (CASE COALESCE(UPPER(network), UPPER(operator))\n                      WHEN 'МОСКОВСКИЙ МЕТРОПОЛИТЕН' THEN 'msk-metro'\n                      WHEN 'ПЕТЕРБУРГСКИЙ МЕТРОПОЛИТЕН' THEN 'spb-metro'\n                      WHEN 'НИЖЕГОРОДСКИЙ МЕТРОПОЛИТЕН' THEN 'niz-metro'\n                      WHEN 'КАЗАНСКИЙ МЕТРОПОЛИТЕН' THEN 'kzn-metro'\n                      WHEN 'САМАРСКИЙ МЕТРОПОЛИТЕН' THEN 'sam-metro'\n                      WHEN 'ЕМУП «ЕКАТЕРИНБУРГСКИЙ МЕТРОПОЛИТЕН»' THEN 'ekb-metro'\n                      WHEN 'НОВОСИБИРСКИЙ МЕТРОПОЛИТЕН' THEN 'nsk-metro'\n                      WHEN 'МИНСКИЙ МЕТРОПОЛИТЕН' THEN 'min-metro'\n                      WHEN 'WARSAW METRO' THEN 'waw-metro'\n                      WHEN 'AMSTERDAM METRO' THEN 'ams-metro'\n                     WHEN 'AMSTERDAM METRO, NS' THEN 'ams-metro'\n                      WHEN 'GLASGOW SUBWAY' THEN 'gla-metro'\n                      WHEN 'TL' THEN 'lau-metro'\n                      WHEN 'КП «КИЇВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kyiv-metro'\n                      /*\n                      WHEN 'КП «ХАРКІВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kharkov-metro'\n                      WHEN '\"КП \"ДНЕПРОПЕТРОВСКИЙ МЕТРОПОЛИТЕН\"\"' THEN 'dnepr-metro'\n                      WHEN \"ATAC\" THEN 'roma-metro'\n                      WHEN \"BAKI METROPOLITENI\" THEN 'baki-metro'\n                      WHEN \"TBILISI METRO\" THEN 'tbilisi-metro'\n                      WHEN \"АЛМАТИНСКИЙ МЕТРОПОЛИТЕН\" THEN 'alm-metro'\n                      WHEN \"ТАШКЕНТСКИЙ МЕТРОПОЛИТЕН\" THEN 'uzb-metro'\n                      */\n                      ELSE 'entrance-metro'\n  END) AS metro_icon     \nFROM planet_osm_point\nWHERE station='subway'\n  AND railway='station'\n) AS data",
         "key_field": "",
         "geometry_field": "way",
         "id": "subway",

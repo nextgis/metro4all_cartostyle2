@@ -1,9 +1,8 @@
 /* ---- Subway stations --------------------------------------------------- */
 
-#subway[zoom>=13] {
-
+#subway[zoom>=14] {
  // в осме у точек станций должен быть тег network, если его нет, то operator. 
-  [zoom >= 14][station='subway'] {
+  [station='subway'] {
     text-name: "[name]";
     text-face-name: @sans;
     text-fill: @subway_text;
@@ -20,52 +19,104 @@
     text-dy: 11;
     text-placements: "S,N,E,W,SE,NW";
     marker-allow-overlap:false;
-    marker-width: 12;
     [metro_icon='entrance-metro'] {
       marker-file: url('img/icon/metro/src/entrance-18.svg');
     }
     [metro_icon='msk-metro'] {
       marker-file: url('img/icon/metro/src/msk-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='spb-metro'] {
       marker-file: url('img/icon/metro/src/spb-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='niz-metro'] {
       marker-file: url('img/icon/metro/src/niz-metro-18.svg');
       marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='kzn-metro'] {
       marker-file: url('img/icon/metro/src/kzn-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='sam-metro'] {
       marker-file: url('img/icon/metro/src/sam-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='ekb-metro'] {
       marker-file: url('img/icon/metro/src/ekb-metro-18.svg');
+      marker-height: 12;
+      [zoom >= 17] {
+        marker-height: 16;
+      }
     }
     [metro_icon='nsk-metro'] {
       marker-file: url('img/icon/metro/src/nsk-metro-18.svg');
+      marker-height: 12;
+      [zoom >= 17] {
+        marker-height: 16;
+      }
     }
     [metro_icon='min-metro'] {
       marker-file: url('img/icon/metro/src/min-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='waw-metro'] {
       marker-file: url('img/icon/metro/src/waw-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='ams-metro'] {
       marker-file: url('img/icon/metro/src/ams-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='gla-metro'] {
       marker-file: url('img/icon/metro/src/gla-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
     [metro_icon='lau-metro'] {
       marker-file: url('img/icon/metro/src/lau-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
+    }
+    [metro_icon='kyiv-metro'] {
+      marker-file: url('img/icon/metro/src/kyiv-metro-18.svg');
+      marker-width: 12;
+      [zoom >= 17] {
+        marker-width: 18;
+      }
     }
   }
   [zoom >= 17][station='subway'] {
     text-size: 13;
     text-halo-radius: 2;
-    marker-width: 18;
   }
 }
 
