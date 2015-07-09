@@ -108,9 +108,9 @@
     }
     [metro_icon='kyiv-metro'] {
       marker-file: url('img/icon/metro/src/kyiv-metro-18.svg');
-      marker-width: 12;
+      marker-height: 12;
       [zoom >= 17] {
-        marker-width: 18;
+        marker-height: 17;
       }
     }
   }
