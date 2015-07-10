@@ -20,7 +20,7 @@
 /* directory to load fonts from in addition to the system directories */
 Map {
   font-directory: url(./fonts);
-  background-color: @land;
+  background-color: @water;
 }
 
 /* set up font sets for various weights and styles */
