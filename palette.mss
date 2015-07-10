@@ -21,6 +21,7 @@
 Map {
   font-directory: url(./fonts);
   background-color: @water;
+  buffer-size: 256;
 }
 
 /* set up font sets for various weights and styles */
