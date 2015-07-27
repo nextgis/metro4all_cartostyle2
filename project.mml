@@ -72,9 +72,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 10000\n  ORDER BY way_area DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE way_area > 10000\n   AND z(!scale_denominator!) <= 12\n   AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "multipolygon",
@@ -82,7 +82,10 @@
       "name": "landuse_gen1",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -97,9 +100,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  ORDER BY way_area DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type\n  FROM planet_osm_polygon\n  WHERE z(!scale_denominator!) > 12\n   AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "polygon",
@@ -107,7 +110,10 @@
       "name": "landuse",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -122,9 +128,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND z(!scale_denominator!) <= 12\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -132,7 +138,10 @@
       "name": "waterway_low",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -144,16 +153,19 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND z(!scale_denominator!) >= 13\n    AND z(!scale_denominator!) <= 14\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_med",
       "name": "waterway_med",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -165,16 +177,19 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n    AND (tunnel IS NULL OR tunnel = 'no')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, waterway AS type\n  FROM planet_osm_line\n  WHERE waterway IN ('river', 'canal', 'stream', 'ditch', 'drain')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND z(!scale_denominator!) >= 15\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "waterway_high",
       "name": "waterway_high",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -189,9 +204,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 1000\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, \"natural\" AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n    AND way_area > 1000\n    AND z(!scale_denominator!) <= 12\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "polygon",
@@ -199,7 +214,10 @@
       "name": "water_gen1",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -214,9 +232,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area\n  FROM planet_osm_polygon\n  WHERE \"natural\" IN ('water', 'pond')\n    OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, way_area AS area\n  FROM planet_osm_polygon\n  WHERE (\"natural\" IN ('water', 'pond') OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))\n   AND z(!scale_denominator!) > 12\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "polygon",
@@ -224,7 +242,10 @@
       "name": "water",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -239,16 +260,19 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure) AS type\n  FROM planet_osm_polygon\n  WHERE leisure = 'nature_reserve' OR landuse = 'cemetery'\n  ORDER BY way_area DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, way_area AS area, COALESCE(landuse, leisure) AS type\n  FROM planet_osm_polygon\n  WHERE leisure = 'nature_reserve' OR landuse = 'cemetery'\n   AND way && !bbox!\n  ORDER BY way_area DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "polygon",
       "id": "landuse_overlays",
       "name": "landuse_overlays",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -260,16 +284,19 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n   AND z(!scale_denominator!) >= 12\n   AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "polygon",
       "id": "buildings",
       "name": "buildings",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -284,9 +311,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, aeroway AS type\n  FROM planet_osm_line\n  WHERE aeroway IN ('apron', 'runway', 'taxiway')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, aeroway AS type\n  FROM planet_osm_line\n  WHERE aeroway IN ('apron', 'runway', 'taxiway')\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -294,7 +321,10 @@
       "name": "aeroway",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -309,16 +339,19 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS bridge, access, render, layer, 1 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    WHEN railway = 'subway' THEN 'subway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n  ) AS tunnels\n  ORDER BY layer ASC, render ASC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS bridge, access, render, layer, 1 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    WHEN railway = 'subway' THEN 'subway'\n    ELSE 'other'\n  END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n     AND way && !bbox!\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n     AND way && !bbox!\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE tunnel NOT IN ('', '0', 'no')\n     AND way && !bbox!\n  ) AS tunnels\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "tunnel",
       "name": "tunnel",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -333,16 +366,19 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way \n  FROM planet_osm_point \n  WHERE highway = 'turning_circle'\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way \n  FROM planet_osm_point \n  WHERE highway = 'turning_circle'\n   AND z(!scale_denominator!) >= 14\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "point",
       "id": "turning_circle_case",
       "name": "turning_circle_case",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -357,16 +393,19 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'narrow_gauge', 'rail') THEN 'railway'\n    WHEN railway='subway' THEN 'subway'\n    ELSE 'other' END AS stylegroup\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL OR railway IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n  ORDER BY z_order\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'narrow_gauge', 'rail') THEN 'railway'\n    WHEN railway='subway' THEN 'subway'\n    ELSE 'other'\n  END AS stylegroup\n  FROM planet_osm_line\n  WHERE (highway IS NOT NULL OR railway IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n    AND way && !bbox!\n  ORDER BY z_order\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "roads_high",
       "name": "roads_high",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -378,16 +417,19 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, highway AS type\n  FROM planet_osm_roads\n  WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, highway AS type\n  FROM planet_osm_roads\n  WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link')\n   AND z(!scale_denominator!) <= 10\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "roads_med",
       "name": "roads_med",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -402,16 +444,19 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, railway AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render,\n  'railway' AS stylegroup\n  FROM planet_osm_line\n  WHERE railway='tram'\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n  ORDER BY z_order\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, railway AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render,\n  'railway' AS stylegroup\n  FROM planet_osm_line\n  WHERE railway='tram'\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND (bridge IS NULL OR bridge = 'no')\n    AND way && !bbox!\n  ORDER BY z_order\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
       "id": "tram_lines",
       "name": "tram_lines",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -426,8 +471,8 @@
         "id": "platforms",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, CASE (near_metro_line AND near_metro_station_point)\n                 WHEN true THEN 'subway_platform'\n                 ELSE 'platform'\n            END AS type, name\nFROM \n  (SELECT way, \"railway\" AS type, name, ST_intersects(ST_PointOnSurface(way),\n  (SELECT ST_Collect(ST_Buffer(way,30))\n    FROM planet_osm_line\n    WHERE railway='subway')\n  ) AS near_metro_line,\n  ST_intersects(ST_Centroid(way), (SELECT ST_Collect(ST_Buffer(way,250))\n                                     FROM planet_osm_point\n                                     WHERE railway IN ('station','halt') AND station='subway')\n                                   ) AS near_metro_station_point\n  FROM planet_osm_polygon\n  WHERE railway = 'platform' \n  ) AS platforms\n) AS data",
-        "extent_cache": "custom",
+        "table": "(SELECT way, CASE (near_metro_line AND near_metro_station_point)\n                 WHEN true THEN 'subway_platform'\n                 ELSE 'platform'\n            END AS type, name\n FROM \n  (SELECT way, \"railway\" AS type, name, ST_intersects(ST_PointOnSurface(way),\n   (SELECT ST_Collect(ST_Buffer(way,30))\n    FROM planet_osm_line\n    WHERE railway='subway'\n     AND z(!scale_denominator!) >= 17\n     AND way && !bbox!)\n   ) AS near_metro_line,\n   ST_intersects(ST_Centroid(way), (SELECT ST_Collect(ST_Buffer(way,250))\n                                     FROM planet_osm_point\n                                     WHERE railway IN ('station','halt')\n                                      AND station='subway'\n                                      AND z(!scale_denominator!) >= 17\n                                      AND way && !bbox!)\n                                   ) AS near_metro_station_point\n   FROM planet_osm_polygon\n   WHERE railway = 'platform'\n    AND z(!scale_denominator!) >= 17\n    AND way && !bbox!\n  ) AS platforms\n) AS data",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "id": "platforms",
@@ -435,7 +480,10 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "platforms"
+      "name": "platforms",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -450,8 +498,8 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT *\nFROM planet_osm_line_underways_merged\nWHERE way && !bbox!\n) AS data",
-        "extent_cache": "custom",
+        "table": "( SELECT *\nFROM planet_osm_line_underways_merged\nWHERE way && !bbox! AND z(!scale_denominator!) >= 17\n) AS data",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "class": "",
@@ -459,31 +507,10 @@
       "id": "pathways_underground",
       "name": "pathways_underground",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
-    },
-    {
-      "Datasource": {
-        "dbname": "tilemill_dev",
-        "type": "postgis",
-        "host": "192.168.250.1",
-        "port": "5432",
-        "user": "myway",
-        "password": "LTFZcIOe4qdM",
-        "key_field": "",
-        "geometry_field": "way",
-        "id": "ways_to_platforms",
-        "project": "NextGIS-myway",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT ST_Buffer(way,12, 'endcap=square join=bevel') AS way, \"railway\" AS type\n  FROM planet_osm_line\n  WHERE railway = 'platform'\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
-      },
-      "id": "ways_to_platforms",
-      "geometry": "linestring",
-      "class": "",
       "srs-name": "900913",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "ways_to_platforms"
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -495,16 +522,19 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way \n  FROM planet_osm_point\n  WHERE highway = 'turning_circle'\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way \n  FROM planet_osm_point\n  WHERE highway = 'turning_circle'\n   AND z(!scale_denominator!) >= 14\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "point",
       "id": "turning_circle_fill",
       "name": "turning_circle_fill",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913"
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -519,9 +549,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, COALESCE(highway, railway) AS type, 1 AS bridge, access, render, layer, 0 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other' END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n  ) AS bridges\n  ORDER BY layer ASC, render ASC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 1 AS bridge, access, render, layer, 0 as tunnel,\n  CASE\n    WHEN highway IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN highway IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN highway IN ('service', 'track') THEN 'service'\n    WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'\n    ELSE 'other'\n  END AS stylegroup\n  FROM (\n    SELECT *, '1_outline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n     AND way && !bbox!\n    UNION ALL\n    SELECT *, '2_line' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n     AND way && !bbox!\n    UNION ALL\n    SELECT *, '3_inline' AS render FROM planet_osm_line\n    WHERE bridge NOT IN ('', '0', 'no')\n     AND way && !bbox!\n  ) AS bridges\n  ORDER BY layer ASC, render ASC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -529,7 +559,10 @@
       "name": "bridge",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -544,17 +577,20 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "(SELECT way, barrier AS type, access,  CASE WHEN barrier = 'fence' THEN 'fence'WHEN barrier IN ('wall', 'city_wall') THEN 'wall'WHEN barrier = 'hedge' THEN 'hedge'END AS stylegroup FROM planet_osm_line WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall') AND way && !bbox! /* AS barriers_all*/ EXCEPT SELECT barriers.way AS way, barriers.type, barriers.access, barriers.stylegroup FROM (SELECT way, barrier AS type, access,  CASE WHEN barrier = 'fence' THEN 'fence'WHEN barrier IN ('wall', 'city_wall') THEN 'wall'WHEN barrier = 'hedge' THEN 'hedge'END AS stylegroup FROM planet_osm_line WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall') AND way && !bbox!) AS barriers, (SELECT way FROM planet_osm_point WHERE barrier IN ('entrance', 'gate') AND way && !bbox!) AS entrances WHERE ST_Intersects(barriers.way, entrances.way) /* AS barriers_with_gaps*/ UNION SELECT ST_Difference(barriers.way, entrances.gap) AS way, barriers.type, barriers.access, barriers.stylegroup FROM (SELECT way, barrier AS type, access,  CASE WHEN barrier = 'fence' THEN 'fence'WHEN barrier IN ('wall', 'city_wall') THEN 'wall'WHEN barrier = 'hedge' THEN 'hedge'END AS stylegroup FROM planet_osm_line WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall') AND way && !bbox!) AS barriers, (SELECT way, ST_Buffer(way, 5) AS gap FROM planet_osm_point WHERE barrier IN ('entrance', 'gate') AND way && !bbox!) AS entrances WHERE ST_Intersects(barriers.way, entrances.way) /* AS barriers_with_gaps*/ ) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "(SELECT way, barrier AS type, access,\n CASE WHEN barrier = 'fence' THEN 'fence'\n \t WHEN barrier IN ('wall', 'city_wall') THEN 'wall'\n \t WHEN barrier = 'hedge' THEN 'hedge'\n END AS stylegroup\n FROM planet_osm_line\n WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall')\n  AND z(!scale_denominator!) >= 16\n  AND way && !bbox! /* AS barriers_all*/\n EXCEPT\n SELECT barriers.way AS way, barriers.type, barriers.access, barriers.stylegroup\n FROM\n (SELECT way, barrier AS type, access,\n  CASE WHEN barrier = 'fence' THEN 'fence'\n  \t WHEN barrier IN ('wall', 'city_wall') THEN 'wall'\n  \t WHEN barrier = 'hedge' THEN 'hedge'\n  END AS stylegroup\n  FROM planet_osm_line\n  WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall')\n   AND z(!scale_denominator!) >= 16\n   AND way && !bbox!\n ) AS barriers,\n (SELECT way\n  FROM planet_osm_point\n  WHERE barrier IN ('entrance', 'gate')\n   AND z(!scale_denominator!) >= 16\n   AND way && !bbox!\n ) AS entrances\n WHERE ST_Intersects(barriers.way, entrances.way) /* AS barriers_with_gaps*/\n UNION\n SELECT ST_Difference(barriers.way, entrances.gap) AS way, barriers.type, barriers.access, barriers.stylegroup\n FROM\n (SELECT way, barrier AS type, access,\n  CASE WHEN barrier = 'fence' THEN 'fence'\n  \t WHEN barrier IN ('wall', 'city_wall') THEN 'wall'\n  \t WHEN barrier = 'hedge' THEN 'hedge'\n  END AS stylegroup\n  FROM planet_osm_line\n  WHERE barrier IN ('fence', 'hedge', 'wall', 'city_wall')\n   AND z(!scale_denominator!) >= 16\n   AND way && !bbox!\n ) AS barriers,\n (SELECT way, ST_Buffer(way, 5) AS gap /* 5 meter gap */\n  FROM planet_osm_point\n  WHERE barrier IN ('entrance', 'gate')\n   AND z(!scale_denominator!) >= 16\n   AND way && !bbox!\n ) AS entrances\n WHERE ST_Intersects(barriers.way, entrances.way) /* AS barriers_with_gaps*/\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
-      "geometry": "linestring",
+      "geometry": "point",
       "id": "barrier_lines",
       "name": "barrier_lines",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -569,9 +605,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, place AS type, name, z_order, population\n  FROM planet_osm_point\n  WHERE place in ('country', 'state', 'city', 'town', 'village', 'hamlet', 'suburb', 'neighbourhood', 'locality')\n  ORDER BY population DESC NULLS LAST\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, place AS type, name, population\n  FROM planet_osm_point\n  WHERE place in ('country', 'state', 'city', 'town', 'village', 'hamlet', 'suburb', 'neighbourhood', 'locality')\n   AND way && !bbox!\n  ORDER BY population DESC NULLS LAST\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "point",
@@ -579,7 +615,10 @@
       "name": "place",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -595,7 +634,7 @@
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
         "table": "(  SELECT COALESCE(landuse, leisure, \"natural\", amenity) AS type,\n    name, way_area AS area,\n    ST_PointOnSurface(way) AS way\n  FROM planet_osm_polygon\n  WHERE name IS NOT NULL\n    AND (amenity IN ('college', 'kindergarten', 'school', 'university', 'hospital')\n    OR leisure IN ('nature_reserve', 'park', 'stadium')\n    OR \"natural\" IN ('water', 'wetland')\n    OR landuse IN ('cemetery'))    \n    AND way && !bbox!\n    AND ST_IsValid(way)\n  ORDER BY area DESC\n) AS data",
-        "extent_cache": "custom",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "class": "",
@@ -604,7 +643,10 @@
       "name": "area_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "geometry": "point",
@@ -635,19 +677,24 @@
         "port": "5432",
         "user": "myway",
         "password": "LTFZcIOe4qdM",
-        "table": "(SELECT way, station, name, COALESCE(UPPER(network), UPPER(operator)) AS network,\n (CASE COALESCE(UPPER(network), UPPER(operator))\n                      WHEN 'МОСКОВСКИЙ МЕТРОПОЛИТЕН' THEN 'msk-metro'\n                      WHEN 'ПЕТЕРБУРГСКИЙ МЕТРОПОЛИТЕН' THEN 'spb-metro'\n                      WHEN 'НИЖЕГОРОДСКИЙ МЕТРОПОЛИТЕН' THEN 'niz-metro'\n                      WHEN 'КАЗАНСКИЙ МЕТРОПОЛИТЕН' THEN 'kzn-metro'\n                      WHEN 'САМАРСКИЙ МЕТРОПОЛИТЕН' THEN 'sam-metro'\n                      WHEN 'ЕМУП «ЕКАТЕРИНБУРГСКИЙ МЕТРОПОЛИТЕН»' THEN 'ekb-metro'\n                      WHEN 'НОВОСИБИРСКИЙ МЕТРОПОЛИТЕН' THEN 'nsk-metro'\n                      WHEN 'МИНСКИЙ МЕТРОПОЛИТЕН' THEN 'min-metro'\n                      WHEN 'WARSAW METRO' THEN 'waw-metro'\n                      WHEN 'AMSTERDAM METRO' THEN 'ams-metro'\n                     WHEN 'AMSTERDAM METRO, NS' THEN 'ams-metro'\n                      WHEN 'GLASGOW SUBWAY' THEN 'gla-metro'\n                      WHEN 'TL' THEN 'lau-metro'\n                      WHEN 'КП «КИЇВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kyiv-metro'\n                      /*\n                      WHEN 'КП «ХАРКІВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kharkov-metro'\n                      WHEN '\"КП \"ДНЕПРОПЕТРОВСКИЙ МЕТРОПОЛИТЕН\"\"' THEN 'dnepr-metro'\n                      WHEN \"ATAC\" THEN 'roma-metro'\n                      WHEN \"BAKI METROPOLITENI\" THEN 'baki-metro'\n                      WHEN \"TBILISI METRO\" THEN 'tbilisi-metro'\n                      WHEN \"АЛМАТИНСКИЙ МЕТРОПОЛИТЕН\" THEN 'alm-metro'\n                      WHEN \"ТАШКЕНТСКИЙ МЕТРОПОЛИТЕН\" THEN 'uzb-metro'\n                      */\n                      ELSE 'entrance-metro'\n  END) AS metro_icon     \nFROM planet_osm_point\nWHERE station='subway'\n  AND railway='station'\n) AS data",
+        "table": "(SELECT way, station, name, COALESCE(UPPER(network), UPPER(operator)) AS network,\n (CASE COALESCE(UPPER(network), UPPER(operator))\n                      WHEN 'МОСКОВСКИЙ МЕТРОПОЛИТЕН' THEN 'msk-metro'\n                      WHEN 'ПЕТЕРБУРГСКИЙ МЕТРОПОЛИТЕН' THEN 'spb-metro'\n                      WHEN 'НИЖЕГОРОДСКИЙ МЕТРОПОЛИТЕН' THEN 'niz-metro'\n                      WHEN 'КАЗАНСКИЙ МЕТРОПОЛИТЕН' THEN 'kzn-metro'\n                      WHEN 'САМАРСКИЙ МЕТРОПОЛИТЕН' THEN 'sam-metro'\n                      WHEN 'ЕМУП «ЕКАТЕРИНБУРГСКИЙ МЕТРОПОЛИТЕН»' THEN 'ekb-metro'\n                      WHEN 'НОВОСИБИРСКИЙ МЕТРОПОЛИТЕН' THEN 'nsk-metro'\n                      WHEN 'МИНСКИЙ МЕТРОПОЛИТЕН' THEN 'min-metro'\n                      WHEN 'WARSAW METRO' THEN 'waw-metro'\n                      WHEN 'AMSTERDAM METRO' THEN 'ams-metro'\n                     WHEN 'AMSTERDAM METRO, NS' THEN 'ams-metro'\n                      WHEN 'GLASGOW SUBWAY' THEN 'gla-metro'\n                      WHEN 'TL' THEN 'lau-metro'\n                      WHEN 'КП «КИЇВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kyiv-metro'\n                      /*\n                      WHEN 'КП «ХАРКІВСЬКИЙ МЕТРОПОЛІТЕН»' THEN 'kharkov-metro'\n                      WHEN '\"КП \"ДНЕПРОПЕТРОВСКИЙ МЕТРОПОЛИТЕН\"\"' THEN 'dnepr-metro'\n                      WHEN \"ATAC\" THEN 'roma-metro'\n                      WHEN \"BAKI METROPOLITENI\" THEN 'baki-metro'\n                      WHEN \"TBILISI METRO\" THEN 'tbilisi-metro'\n                      WHEN \"АЛМАТИНСКИЙ МЕТРОПОЛИТЕН\" THEN 'alm-metro'\n                      WHEN \"ТАШКЕНТСКИЙ МЕТРОПОЛИТЕН\" THEN 'uzb-metro'\n                      */\n                      ELSE 'entrance-metro'\n  END) AS metro_icon     \nFROM planet_osm_point\nWHERE station='subway'\n  AND railway='station'\n  AND z(!scale_denominator!) >= 14\n  AND way && !bbox!\n) AS data",
         "key_field": "",
         "geometry_field": "way",
         "id": "subway",
         "project": "NextGIS-myway",
-        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "id": "subway",
       "geometry": "point",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "subway"
+      "name": "subway",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -662,16 +709,19 @@
         "id": "railway_stations",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "(SELECT way,railway,station,name,length(name) AS len,\n  (SELECT 90+degrees(ST_Azimuth(ST_StartPoint(inter), ST_EndPoint(inter))) \n   FROM (SELECT ST_Intersection(r.way, ST_Buffer(p.way, 100)) AS inter \n         FROM planet_osm_line r\n         WHERE r.railway IN ('rail', 'tram', 'monorail', 'light_rail', 'funicular', 'narrow_gauge') AND r.way && ST_Buffer(p.way, 100)\n         ORDER BY ST_Distance(r.way, p.way) LIMIT 1\n        ) rr\n  ) AS angle \n FROM planet_osm_point p \n WHERE railway IN ('station', 'halt', 'tram_stop') AND (station IS NULL OR (station != 'subway' AND station != 'disused'))\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "(SELECT way,railway,station,name,length(name) AS len,\n  (SELECT 90+degrees(ST_Azimuth(ST_StartPoint(inter), ST_EndPoint(inter))) \n   FROM (SELECT ST_Intersection(r.way, ST_Buffer(p.way, 100)) AS inter \n         FROM planet_osm_line r\n         WHERE r.railway IN ('rail', 'tram', 'monorail', 'light_rail', 'funicular', 'narrow_gauge')\n          AND r.way && ST_Buffer(p.way, 100)\n          AND z(!scale_denominator!) >= 13\n          AND way && !bbox!\n         ORDER BY ST_Distance(r.way, p.way) LIMIT 1\n        ) rr\n  ) AS angle \n FROM planet_osm_point p \n WHERE railway IN ('station', 'halt', 'tram_stop')\n  AND (station IS NULL OR (station != 'subway' AND station != 'disused'))\n  AND z(!scale_denominator!) >= 13\n  AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "id": "railway_stations",
       "geometry": "point",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "railway_stations"
+      "name": "railway_stations",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -686,9 +736,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, ref, oneway, CHAR_LENGTH(ref) AS reflen\n    FROM planet_osm_line\n    WHERE highway IN ('motorway', 'trunk')\n      AND (name IS NOT NULL OR ref IS NOT NULL)\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, highway AS type, name, ref, oneway, CHAR_LENGTH(ref) AS reflen\n  FROM planet_osm_line\n  WHERE highway IN ('motorway', 'trunk')\n    AND (name IS NOT NULL OR ref IS NOT NULL)\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -696,7 +746,10 @@
       "name": "motorway_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -711,9 +764,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('primary', 'secondary', 'tertiary')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('primary', 'secondary', 'tertiary')\n    AND z(!scale_denominator!) > 12\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -721,7 +774,10 @@
       "name": "mainroad_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -736,9 +792,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('residential', 'unclassified', 'road', 'living_street', 'unknown')\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, highway AS type, name, oneway\n  FROM planet_osm_line\n  WHERE (name IS NOT NULL OR oneway IN ('yes', 'true', '1', '-1'))\n    AND highway IN ('residential', 'unclassified', 'road', 'living_street', 'unknown')\n    AND z(!scale_denominator!) > 14\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -746,7 +802,10 @@
       "name": "minorroad_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -761,9 +820,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND name IS NOT NULL\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way, waterway AS type, name\n  FROM planet_osm_line\n  WHERE waterway IN ('canal', 'river', 'stream')\n    AND (tunnel IS NULL OR tunnel = 'no')\n    AND name IS NOT NULL\n    AND z(!scale_denominator!) >= 13\n    AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "linestring",
@@ -771,7 +830,10 @@
       "name": "waterway_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -786,16 +848,19 @@
         "id": "transport_stops",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way,  name \n  FROM planet_osm_point\n  WHERE highway = 'bus_stop'\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "( SELECT way,  name \n  FROM planet_osm_point\n  WHERE highway = 'bus_stop'\n   AND z(!scale_denominator!) >= 16\n   AND way && !bbox!\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "id": "transport_stops",
       "geometry": "point",
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "transport_stops"
+      "name": "transport_stops",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -810,8 +875,8 @@
         "id": "aeroports",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, aeroway AS type, name\n  FROM planet_osm_point\n  WHERE aeroway = 'aerodrome' AND name IS NOT NULL AND disused IS NULL\n  UNION\n SELECT ST_PointOnSurface(way) AS way, aeroway AS type, name\n  FROM planet_osm_polygon\n  WHERE aeroway = 'aerodrome' AND name IS NOT NULL AND disused IS NULL\n) AS data",
-        "extent_cache": "custom",
+        "table": "(SELECT way, aeroway AS type, name\n  FROM planet_osm_point\n  WHERE aeroway = 'aerodrome'\n   AND name IS NOT NULL AND disused IS NULL\n   AND way && !bbox!\n  UNION\n SELECT ST_PointOnSurface(way) AS way, aeroway AS type, name\n  FROM planet_osm_polygon\n  WHERE aeroway = 'aerodrome'\n   AND name IS NOT NULL AND disused IS NULL\n   AND way && !bbox!\n) AS data",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "id": "airports",
@@ -819,7 +884,10 @@
       "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "name": "airports"
+      "name": "airports",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -834,8 +902,8 @@
         "key_field": "",
         "project": "metro4all_cartostyle2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT ST_PointOnSurface(way) AS way, name, shop AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE name IS NOT NULL AND shop IN ('mall')\n) AS data",
-        "extent_cache": "custom",
+        "table": "( SELECT ST_PointOnSurface(way) AS way, name, shop AS type, way_area AS area\n  FROM planet_osm_polygon\n  WHERE name IS NOT NULL AND shop IN ('mall')\n   AND z(!scale_denominator!) >= 15\n   AND way && !bbox!\n) AS data",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "class": "",
@@ -844,7 +912,10 @@
       "name": "shop_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -859,8 +930,8 @@
         "key_field": "",
         "project": "metro4all_cartostyle2",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT way, name, amenity AS type\n FROM planet_osm_point\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre') AND name IS NOT NULL\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, amenity AS type\n FROM planet_osm_polygon\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre') AND name IS NOT NULL\n UNION\n SELECT way, name, tourism AS type\n FROM planet_osm_point\n WHERE tourism IN ('gallery', 'museum', 'zoo') AND name IS NOT NULL\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, tourism AS type\n FROM planet_osm_polygon\n WHERE tourism IN ('gallery', 'museum', 'zoo') AND name IS NOT NULL\n) AS data",
-        "extent_cache": "custom",
+        "table": "(SELECT way, name, amenity AS type\n FROM planet_osm_point\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre')\n  AND name IS NOT NULL\n  AND z(!scale_denominator!) >= 17\n  AND way && !bbox!\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, amenity AS type\n FROM planet_osm_polygon\n WHERE amenity IN ('bar', 'cafe', 'fast_food', 'pub', 'restaurant', 'cinema', 'theatre')\n  AND name IS NOT NULL\n  AND z(!scale_denominator!) >= 17\n  AND way && !bbox!\n UNION\n SELECT way, name, tourism AS type\n FROM planet_osm_point\n WHERE tourism IN ('gallery', 'museum', 'zoo')\n  AND name IS NOT NULL\n  AND z(!scale_denominator!) >= 17\n  AND way && !bbox!\n UNION\n SELECT ST_PointOnSurface(way) AS way, name, tourism AS type\n FROM planet_osm_polygon\n WHERE tourism IN ('gallery', 'museum', 'zoo')\n  AND name IS NOT NULL\n  AND z(!scale_denominator!) >= 17\n  AND way && !bbox!\n) AS data",
+        "estimate_extent": "false",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
       },
       "class": "",
@@ -869,7 +940,10 @@
       "name": "poi_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     },
     {
       "Datasource": {
@@ -884,9 +958,9 @@
         "key_field": "",
         "project": "NextGIS-myway",
         "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-        "table": "( SELECT 'building' AS type, name, \"addr:housenumber\" AS house_num,\n way_area AS area, ST_PointOnSurface(way) AS way\n FROM planet_osm_polygon\n WHERE building NOT IN ('', 'no', '0', 'false')\n    AND way && !bbox!\n    AND ST_IsValid(way)\n  ORDER BY area DESC\n) AS data",
-        "extent_cache": "custom",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61"
+        "table": "(SELECT 'building' AS type, name, \"addr:housenumber\" AS house_num,\n way_area AS area, ST_PointOnSurface(way) AS way\n FROM planet_osm_polygon\n WHERE building NOT IN ('', 'no', '0', 'false') AND \"addr:housenumber\" IS NOT NULL\n  AND z(!scale_denominator!) >= 16\n  AND way && !bbox!\n  AND ST_IsValid(way)\n ORDER BY area DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
       },
       "class": "",
       "geometry": "point",
@@ -894,7 +968,10 @@
       "name": "building_label",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
-      "status": "on"
+      "status": "on",
+      "advanced": {
+        "estimate_extent": "false"
+      }
     }
   ],
   "scale": 1,
