@@ -102,9 +102,9 @@
 
 /* ---- Buildings --------------------------------------------------- */
 
-#building_label { 
+#building_label[zoom>=16] { 
   //building addreses  
-  [type='building'][zoom>=16] {
+  [type='building'] {
     text-fill: @other_text;
     text-halo-fill: @other_halo;
     text-name: "[house_num]";
