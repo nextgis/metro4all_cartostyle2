@@ -444,7 +444,7 @@
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
         "key_field": "",
-        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n   AND z(!scale_denominator!) >= 12\n   AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
+        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n   AND z(!scale_denominator!) >= 13\n   AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
         "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
         "estimate_extent": "false"
       },
