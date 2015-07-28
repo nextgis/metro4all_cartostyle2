@@ -283,30 +283,6 @@
         "user": "myway",
         "password": "LTFZcIOe4qdM",
         "geometry_field": "way",
-        "key_field": "",
-        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n   AND z(!scale_denominator!) >= 12\n   AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
-        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
-        "estimate_extent": "false"
-      },
-      "class": "",
-      "geometry": "polygon",
-      "id": "buildings",
-      "name": "buildings",
-      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "srs-name": "900913",
-      "advanced": {
-        "estimate_extent": "false"
-      }
-    },
-    {
-      "Datasource": {
-        "dbname": "tilemill_dev",
-        "type": "postgis",
-        "host": "192.168.250.1",
-        "port": "5432",
-        "user": "myway",
-        "password": "LTFZcIOe4qdM",
-        "geometry_field": "way",
         "id": "aeroway",
         "key_field": "",
         "project": "NextGIS-myway",
@@ -452,6 +428,30 @@
       "geometry": "linestring",
       "id": "tram_lines",
       "name": "tram_lines",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "srs-name": "900913",
+      "advanced": {
+        "estimate_extent": "false"
+      }
+    },
+    {
+      "Datasource": {
+        "dbname": "tilemill_dev",
+        "type": "postgis",
+        "host": "192.168.250.1",
+        "port": "5432",
+        "user": "myway",
+        "password": "LTFZcIOe4qdM",
+        "geometry_field": "way",
+        "key_field": "",
+        "table": "( SELECT way, \"building\" AS type\n  FROM planet_osm_polygon\n  WHERE building NOT IN ('0','false', 'no')\n   AND z(!scale_denominator!) >= 12\n   AND way && !bbox!\n  ORDER BY ST_YMin(ST_Envelope(way)) DESC\n) AS data",
+        "extent": "-513516.51,5813148.5,9254056.03,8653016.61",
+        "estimate_extent": "false"
+      },
+      "class": "",
+      "geometry": "polygon",
+      "id": "buildings",
+      "name": "buildings",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
       "advanced": {
