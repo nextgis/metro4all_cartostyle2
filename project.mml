@@ -10,7 +10,7 @@
     50.45,
     11
   ],
-  "format": "png",
+  "format": "png8",
   "interactivity": false,
   "minzoom": 10,
   "maxzoom": 18,
