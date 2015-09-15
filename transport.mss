@@ -121,7 +121,11 @@
 }
 
 /* ---- Subway platforms --------------------------------------------------- */
-
+#underways[zoom>=17][zoom<=20] {
+  polygon-fill: #444;
+  polygon-comp-op: minus;
+}
+/*
 #platforms {  
   [type="subway_platform"][zoom>=17] {
     polygon-fill: #444;
@@ -134,12 +138,6 @@
   line-join: round;
   line-color: #444;
   line-comp-op: minus;
-  /*[zoom=15] {
-    line-width: @rdz15_min / 4 + 2;
-  }
-  [zoom=16] {
-    line-width: @rdz16_min / 4 + 2;
-  }*/
   [zoom>=17] {
     line-width: @rdz17_min / 4 + 4;
   }
@@ -147,6 +145,7 @@
     line-width: @rdz18_min / 4 + 6;
   }
 }
+*/
 /* ---- Bus and trolleybus stops and stations ----------------------------------- */
 #transport_stops[zoom >= 16] {
   marker-allow-overlap: false;

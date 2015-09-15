@@ -483,7 +483,8 @@
       "name": "platforms",
       "advanced": {
         "estimate_extent": "false"
-      }
+      },
+      "status": "off"
     },
     {
       "Datasource": {
@@ -510,7 +511,31 @@
       "srs-name": "900913",
       "advanced": {
         "estimate_extent": "false"
-      }
+      },
+      "status": "off"
+    },
+    {
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT (ST_Dump(ST_Multi(ST_Union(way)))).geom AS way\n FROM\n (\n   (SELECT way\n    FROM \n     (SELECT way, \"railway\" AS type, name, ST_intersects(ST_PointOnSurface(way),\n      (SELECT ST_Collect(ST_Buffer(way,30))\n       FROM planet_osm_line\n       WHERE railway='subway'\n        AND z(!scale_denominator!) >= 17\n        AND way && !bbox!)\n      ) AS near_metro_line,\n      ST_intersects(ST_Centroid(way), (SELECT ST_Collect(ST_Buffer(way,250))\n                                        FROM planet_osm_point\n                                        WHERE railway IN ('station','halt')\n                                         AND station='subway'\n                                         AND z(!scale_denominator!) >= 17\n                                         AND way && !bbox!)\n                                      ) AS near_metro_station_point\n      FROM planet_osm_polygon\n      WHERE railway = 'platform'\n     ) AS platforms\n    WHERE near_metro_line AND near_metro_station_point\n     AND z(!scale_denominator!) >= 17\n     AND way && !bbox!) /*AS subway_platforms*/\n   UNION\n   (SELECT ST_Buffer(way, 3) AS way\n     FROM planet_osm_line\n     WHERE (highway IS NOT NULL)\n       AND highway IN ('footway', 'steps')\n       AND (z_order < 0)\n       AND z(!scale_denominator!) >= 17\n       AND way && !bbox!) /*AS underways*/\n ) AS underwaysAndPlatforms\n) AS data",
+        "key_field": "",
+        "geometry_field": "",
+        "host": "192.168.250.1",
+        "port": "5432",
+        "dbname": "tilemill_dev",
+        "user": "myway",
+        "password": "LTFZcIOe4qdM",
+        "extent": "-513516.51,5842378.29,9254055.93,8653016.61"
+      },
+      "id": "underways",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {
+        "estimate_extent": "false"
+      },
+      "name": "underways"
     },
     {
       "Datasource": {
